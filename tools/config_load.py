@@ -5,8 +5,7 @@ class ConfigLoader:
     """
     Attributes:
 
-    Methods:
-        read(): read conf file
+    Methods: read(): read conf file
     """
     def __init__(self):
         self._config = ConfigParser.ConfigParser()
@@ -25,6 +24,16 @@ class ConfigLoader:
             return -1
 
     def get(self, section, option):
+        """
+        Args:
+            section: string
+            option: string
+        Returns:
+            value: string
+        """
+        return self._config.get(section, option)
+
+    def get_int(self, section, option):
         """
         Args:
             section: string

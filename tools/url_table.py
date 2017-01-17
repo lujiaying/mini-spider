@@ -10,7 +10,7 @@ except ImportError:
 
 from logger import data_analysis_logger as logger
 
-__all__ = ['get_instance']
+__all__ = ['get_url_table', 'get_Webpage_buffer', 'UrlNode']
 
 # --- Infrastructure --
 
@@ -120,6 +120,10 @@ class UrlNode:
     def depth(self, depth):
         self._depth = depth
 
+    def __str__(self):
+        return "UrlNode %s: url-%s, depth-%s, father_url-%s, raw_url-%s" % (
+                id(self), self._url, self._depth, self._father_url, self._raw_url)
+
 
 class UrlTable:
     def __init__(self):
@@ -152,6 +156,15 @@ class UrlTable:
     def task_done(self):
         self._queue.task_done()
 
+    def join(self):
+        self._queue.join()
+
+    def __len__(self):
+        return self._queue.qsize()
+
+    def __str__(self):
+        return "%s" % (self._queue.queue)
+
 
 class WebpageBuffer:
     def __init__(self):
@@ -176,6 +189,15 @@ class WebpageBuffer:
 
     def task_done(self):
         self._queue.task_done()
+
+    def join(self):
+        self._queue.join()
+
+    def __len__(self):
+        return self._queue.qsize()
+        
+    def __str__(self):
+        return "%s" % (self._queue.queue)
 # --- End Infrastructure --
 
 
