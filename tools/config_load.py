@@ -1,6 +1,9 @@
 import ConfigParser
 
+__all__ = ['get_config_loader']
 
+
+# --- Infrastructure --
 class ConfigLoader:
     """
     Attributes:
@@ -54,3 +57,15 @@ class ConfigLoader:
             items: list of (name, value)
         """
         return self._config.items(section)
+# --- End Infrastructure --
+
+
+# --- Sigleton ---
+_config_loader = ConfigLoader()
+# --- End Sigleton ---
+
+
+# --- API ---
+def get_config_loader():
+    return _config_loader
+# --- End API ---

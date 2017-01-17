@@ -10,10 +10,9 @@ except ImportError:
 
 from logger import data_analysis_logger as logger
 
-__all__ = ['get_url_table', 'get_Webpage_buffer', 'UrlNode']
+__all__ = ['get_url_table', 'get_webpage_buffer', 'UrlNode']
 
 # --- Infrastructure --
-
 def hash_f(x):
     h = hashlib.sha256(x)
     return int(h.hexdigest(), base=16)
@@ -211,6 +210,6 @@ _webpage_buffer_ins = WebpageBuffer()
 def get_url_table():
     return _url_table_ins
 
-def get_Webpage_buffer():
+def get_webpage_buffer():
     return _webpage_buffer_ins
 # --- End API ---

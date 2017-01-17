@@ -25,7 +25,7 @@ if __name__ == "__main__":
     options = parser.parse_args()
 
     # conf load
-    config_loader = config_load_lib.ConfigLoader()
+    config_loader = get_config_loader() 
     if 0 != config_loader.read(options.conf_file):
         logger.error("conf file [%s] not exist" % (options.conf_file))
         sys.exit(1)
@@ -40,7 +40,7 @@ if __name__ == "__main__":
 
     # Init url_table, webpage_buffer
     url_table = url_table_lib.get_url_table()
-    webpage_buffer = url_table_lib.get_Webpage_buffer()
+    webpage_buffer = url_table_lib.get_webpage_buffer()
     url_table.init(int(config_loader.get('spider', 'predict_url_to_crawl')), 
                    int(config_loader.get('spider', 'queue_max_size')))
     webpage_buffer.init(config_loader.get('spider', 'queue_max_size'))
